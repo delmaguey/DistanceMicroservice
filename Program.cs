@@ -2,12 +2,15 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<GoogleRouteService>();
 var app = builder.Build();
 IConfiguration config = app.Configuration;
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My microservice for map information."));
 }
 app.UseHttpsRedirection();
 app.MapPost("/getdistanceinfo", (Addresses addresses, GoogleRouteService googleRouteService) =>

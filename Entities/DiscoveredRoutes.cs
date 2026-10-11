@@ -18,7 +18,14 @@ public record Route(int distanceMeters, string duration)
     public double DistanceInMiles =>
     Math.Round(distanceMeters / 1609.34, 2);
 }
-public record RouteRequest(Origin origin, Destination destination, string travelMode, string routingPreference, bool computeAlternativeRoutes, Routemodifiers routeModifiers, string languageCode, string units);
+public record RouteRequest(Origin origin, 
+                           Destination destination, 
+                           string travelMode, 
+                           string routingPreference, 
+                           bool computeAlternativeRoutes, 
+                           Routemodifiers routeModifiers, 
+                           string languageCode, 
+                           string units);
 public record Origin(string Address);
 public record Destination(string Address);
 public record Routemodifiers(bool avoidTolls, bool avoidHighways, bool avoidFerries);
